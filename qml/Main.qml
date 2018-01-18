@@ -127,7 +127,7 @@ MainView {
             preferences.javascriptCanAccessClipboard: true
 
             
-            filePicker: filePickerLoader.item
+            filePicker: pickerComponent
 
            contextualActions: ActionList {
             
@@ -296,12 +296,18 @@ MainView {
             }
         }
         
-        Component {
+ Component {
         id: openDialogComponent
 
         OpenDialog {
             anchors.fill: parent
         }
+    }
+
+    Component {
+        id: pickerComponent
+
+        PickerDialog {}
 }
 
          RadialBottomEdge {
