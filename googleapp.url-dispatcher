@@ -1,0 +1,18 @@
+[
+        {
+                "protocol": "http",
+                "domain-suffix": "google.com"
+        },
+        {
+                "protocol": "https",
+                "domain-suffix": "google.com"
+        },
+        {
+                "protocol": "http",
+                "domain-suffix": "www.google.com"
+        },
+        {
+                "protocol": "https",
+                "domain-suffix": "www.google.com"
+        }
+]

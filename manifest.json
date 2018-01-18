@@ -1,0 +1,16 @@
+{
+    "architecture": "armhf",
+    "description": "Google search app",
+    "framework": "ubuntu-sdk-15.04",
+    "hooks": {
+        "filmsearch": {
+        "desktop": "googleapp.desktop",
+        "apparmor": "app.json",
+                "urls": "googleapp.url-dispatcher"
+    }
+},
+    "maintainer": "Mateo Salta <mateo_salta@yahoo.com>",
+	"name": "googleapp.mateo-salta",
+    "title": "Google App",
+    "version": "0.1"
+}
