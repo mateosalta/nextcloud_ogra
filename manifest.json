@@ -6,11 +6,12 @@
         "filmsearch": {
         "desktop": "googleapp.desktop",
         "apparmor": "app.json",
-                "urls": "googleapp.url-dispatcher"
+                "urls": "googleapp.url-dispatcher",
+                 "content-hub": "googleapp.content-hub"
     }
 },
     "maintainer": "Mateo Salta <mateo_salta@yahoo.com>",
 	"name": "googleapp.mateo-salta",
     "title": "Google App",
-    "version": "0.1"
+    "version": "0.2"
 }

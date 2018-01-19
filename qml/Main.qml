@@ -2,7 +2,7 @@ import QtQuick 2.4
 import Ubuntu.Web 0.2
 import Ubuntu.Components 1.3
 import com.canonical.Oxide 1.19 as Oxide
-import Ubuntu.Components.Popups 1.3
+import Ubuntu.Components.Popups 1.0
 import "UCSComponents"
 import Ubuntu.Content 1.1
 import "actions" as Actions
@@ -15,6 +15,7 @@ import "."
 import "../config.js" as Conf
 
 MainView {
+id: root
     objectName: "mainView"
 
     applicationName: "googleapp.mateo-salta"
@@ -102,14 +103,7 @@ MainView {
   confirmDialog: ConfirmDialog {}
     promptDialog: PromptDialog {}
    beforeUnloadDialog: BeforeUnloadDialog {}
-   
-    messageHandlers: [
-        BlobSaverScriptMessageHandler {
-            cb: function(path) {
-              PopupUtils.open(openDialogComponent, root, {'path': path});
-            }
-        }
-    ]
+
 
             anchors {
                 fill: parent
@@ -120,14 +114,15 @@ MainView {
             context: webcontext
             url: myUrl
 
-            preferences.localStorageEnabled: true
+        
+
             preferences.allowFileAccessFromFileUrls: true
             preferences.allowUniversalAccessFromFileUrls: true
             preferences.appCacheEnabled: true
             preferences.javascriptCanAccessClipboard: true
 
             
-            filePicker: pickerComponent
+
 
            contextualActions: ActionList {
             
@@ -263,6 +258,7 @@ MainView {
         injectExtraContentShareCapabilities: !runningLocalApplication
 
         Component.onCompleted: {
+         preferences.localStorageEnabled = true;
             // Delay bind the property to add a bit of backward compatibility with
             // other unity-webapps-qml modules
             if (unityWebapps.embeddedUiComponentParent !== undefined) {
@@ -284,18 +280,19 @@ MainView {
                 } 
                 return false; 
             }
-        }
-        NewProgressBar {
-            webview: webview
-            width: parent.width + units.gu(5)
-            anchors {
-                //left: parent.left
-               // right: parent.right
-               horizontalCenter: parent.horizontalCenter
-                top: parent.top
+               messageHandlers: [
+        BlobSaverScriptMessageHandler {
+            cb: function(path) {
+              PopupUtils.open(openDialogComponent, root, {'path': path});
             }
         }
+    ]
+                filePicker: filePickerDialog.view
+        }
         
+           
+ 
+            
  Component {
         id: openDialogComponent
 
@@ -309,6 +306,20 @@ MainView {
 
         PickerDialog {}
 }
+
+
+
+        NewProgressBar {
+            webview: webview
+            width: parent.width + units.gu(5)
+            anchors {
+                //left: parent.left
+               // right: parent.right
+               horizontalCenter: parent.horizontalCenter
+                top: parent.top
+            }
+        }
+
 
          RadialBottomEdge {
             id: nav
