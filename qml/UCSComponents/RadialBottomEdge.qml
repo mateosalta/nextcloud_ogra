@@ -8,9 +8,9 @@ Item {
     
   property int hintSize: units.gu(8)
     property color hintColor: Theme.palette.normal.overlay
-    property string hintIconName: "up"
+    property string hintIconName: "sort-listitem"
     property alias hintIconSource: hintIcon.source
-    property color hintIconColor: "#000000"
+    property color hintIconColor: "#0082C9"
     property bool bottomEdgeEnabled: true
 
 

@@ -1,17 +1,17 @@
 {
     "architecture": "armhf",
-    "description": "Google search app",
+    "description": "Nextcloud Ubports Steering Committee",
     "framework": "ubuntu-sdk-15.04",
     "hooks": {
-        "filmsearch": {
-        "desktop": "googleapp.desktop",
+        "ncubports": {
+        "desktop": "ncubports.desktop",
         "apparmor": "app.json",
-                "urls": "googleapp.url-dispatcher",
-                 "content-hub": "googleapp.content-hub"
+                "urls": "ncubports.url-dispatcher",
+                 "content-hub": "ncubports.content-hub"
     }
 },
-    "maintainer": "Mateo Salta <mateo_salta@yahoo.com>",
-	"name": "googleapp.mateo-salta",
-    "title": "Google App",
-    "version": "0.2"
+    "maintainer": "Milan Korecky <milan.korecky@gmail.com>",
+    "name": "ncubports.milkor",
+    "title": "NC Ubports",
+    "version": "1.0.1"
 }

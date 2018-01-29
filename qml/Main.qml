@@ -2,7 +2,7 @@ import QtQuick 2.4
 import Ubuntu.Web 0.2
 import Ubuntu.Components 1.3
 import com.canonical.Oxide 1.19 as Oxide
-import Ubuntu.Components.Popups 1.0
+import Ubuntu.Components.Popups 1.3
 import "UCSComponents"
 import Ubuntu.Content 1.1
 import "actions" as Actions
@@ -18,7 +18,7 @@ MainView {
 id: root
     objectName: "mainView"
 
-    applicationName: "googleapp.mateo-salta"
+    applicationName: "ncubports.milkor"
 
     anchorToKeyboard: true
     automaticOrientation: true
@@ -90,9 +90,12 @@ id: root
             id: webcontext
             userAgent: myUA
             
-            userScripts: [
+            
+            //TODO: blobsaver
+           userScripts: [
         BlobSaverUserScript {}
     ]
+    
         }
         WebView {
             id: webview
@@ -212,7 +215,9 @@ id: root
                 asynchronous: true
             }
             
+            filePicker: filePickerLoader.view
             
+           //Sad page 
         Loader {
                 anchors {
                     fill: webview
@@ -280,6 +285,9 @@ id: root
                 } 
                 return false; 
             }
+            
+            //blobsaver stuff
+            
                messageHandlers: [
         BlobSaverScriptMessageHandler {
             cb: function(path) {
@@ -287,7 +295,8 @@ id: root
             }
         }
     ]
-                filePicker: filePickerDialog.view
+    
+                
         }
         
            
@@ -348,7 +357,7 @@ id: root
                     id: home
                     iconName: "home"
                     onTriggered: {
-                        webview.url = 'https://www.google.com/'
+                        webview.url = 'https://nc.ubports.com'
                     }
                     text: qsTr("Home")
                 },

@@ -1,0 +1,10 @@
+[
+        {
+                "protocol": "http",
+                "domain-suffix": "nc.ubports.com"
+        },
+        {
+                "protocol": "https",
+                "domain-suffix": "nc.ubports.com"
+        }
+]

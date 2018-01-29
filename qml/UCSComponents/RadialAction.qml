@@ -6,6 +6,7 @@ Action {
         property string iconSource
     property color iconColor: "Black"
     property color backgroundColor: "White"
+    
         property string text
         property color foregroundColor: "White"
             property bool top: false

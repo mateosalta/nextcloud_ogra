@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=NC Ubports
+Type=Application
+Icon=icon.png
+Exec=qmlscene %u qml/Main.qml
+Terminal=false
+X-Ubuntu-Touch=true
+
+X-Ubuntu-Splash-Color=#0082C9
+
+Name[en_US]=NC Ubports
