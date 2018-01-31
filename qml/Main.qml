@@ -14,19 +14,20 @@ import BlobSaver 1.0
 import "."
 import "../config.js" as Conf
 
+
 MainView {
 id: root
     objectName: "mainView"
 
-    applicationName: "ncubports.milkor"
+    applicationName: "nextcloud.mateosalta"
 
     anchorToKeyboard: true
     automaticOrientation: true
     
  
 
-    property string myUrl: Conf.webappUrl
-    property string myPattern: Conf.webappUrlPattern
+    property string myUrl: SettingsDialog.address
+    property string myPattern: ""
 
     property string myUA: Conf.webappUA ? Conf.webappUA : "Mozilla/5.0 (Linux; Android 5.0; Nexus 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36"
 
@@ -64,7 +65,7 @@ id: root
     PopupWindowController {
         id: popupController
         objectName: "popupController"
-        webappUrlPatterns: Conf.webappUrlPattern
+        webappUrlPatterns: myPattern
         mainWebappView: webview
         blockOpenExternalUrls: webview.blockOpenExternalUrls
         mediaAccessDialogComponent: mediaAccessDialogComponent
@@ -106,6 +107,7 @@ id: root
   confirmDialog: ConfirmDialog {}
     promptDialog: PromptDialog {}
    beforeUnloadDialog: BeforeUnloadDialog {}
+     // settingsDialog: SettingsDialog {}
 
 
             anchors {
@@ -352,12 +354,21 @@ id: root
                     }
                    text: qsTr("Forward")
                  },
+                  RadialAction {
+                     id: settings
+                     iconName: "settings"
+                     onTriggered: {
+                         PopupUtils.open(Qt.resolvedUrl("SettingsDialog.qml")
+                         )
+                     }
+                     text: qsTr("Settings")
+                  },
                
                 RadialAction {
                     id: home
                     iconName: "home"
                     onTriggered: {
-                        webview.url = 'https://nc.ubports.com'
+                        webview.url = myUrl
                     }
                     text: qsTr("Home")
                 },

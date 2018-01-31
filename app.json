@@ -1,6 +1,6 @@
 {
     "policy_groups": [
-         "networking",
+        "networking",
         "audio",
         "content_exchange",
         "video",

@@ -1,17 +1,17 @@
 {
     "architecture": "armhf",
-    "description": "Nextcloud Ubports Steering Committee",
+    "description": "Nextcloud webapp",
     "framework": "ubuntu-sdk-15.04",
     "hooks": {
-        "ncubports": {
-        "desktop": "ncubports.desktop",
+        "nextcloud": {
+        "desktop": "nextcloud.desktop",
         "apparmor": "app.json",
-                "urls": "ncubports.url-dispatcher",
-                 "content-hub": "ncubports.content-hub"
+                "urls": "nextcloud.url-dispatcher",
+                 "content-hub": "nextcloud.content-hub"
     }
 },
-    "maintainer": "Milan Korecky <milan.korecky@gmail.com>",
-    "name": "ncubports.milkor",
-    "title": "NC Ubports",
-    "version": "1.0.1"
+    "maintainer": "Mateo Salta <mateo_salta@yahoo.com>",
+    "name": "nextcloud.mateosalta",
+    "title": "Nextcloud",
+    "version": "1.2"
 }

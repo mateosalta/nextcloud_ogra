@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Next
+Type=Application
+Icon=icon.png
+Exec=qmlscene %u qml/Main.qml
+Terminal=false
+X-Ubuntu-Touch=true
+
+X-Ubuntu-Splash-Color=#0082C9
+X-Ubuntu-Splash-Image=splash.png
+
+Name[en_US]=nextcloud
