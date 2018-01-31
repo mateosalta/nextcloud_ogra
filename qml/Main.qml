@@ -12,23 +12,20 @@ import Ubuntu.Unity.Action 1.1 as UnityActions
 import Ubuntu.UnityWebApps 0.1 as UnityWebApps
 import BlobSaver 1.0
 import "."
-import "../config.js" as Conf
 
 MainView {
-id: root
+    id: root
     objectName: "mainView"
 
     applicationName: "ncubports.milkor"
 
     anchorToKeyboard: true
     automaticOrientation: true
-    
- 
 
-    property string myUrl: Conf.webappUrl
-    property string myPattern: Conf.webappUrlPattern
+    property string myUrl: 'https://nc.ubports.com'
+    property string myPattern: 'https?://nc.ubports.com/*'
 
-    property string myUA: Conf.webappUA ? Conf.webappUA : "Mozilla/5.0 (Linux; Android 5.0; Nexus 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36"
+    property string myUA: "Mozilla/5.0 (Linux; Android 5.0; Nexus 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36"
 
     Page {
         id: page
@@ -53,7 +50,7 @@ id: root
             fadeTime: 50
             fadeIntensity: 0.0
         }
-        
+
           Component {
         id: mediaAccessDialogComponent
         MediaAccessDialog {
@@ -89,13 +86,13 @@ id: root
         WebContext {
             id: webcontext
             userAgent: myUA
-            
-            
+
+
             //TODO: blobsaver
            userScripts: [
         BlobSaverUserScript {}
     ]
-    
+
         }
         WebView {
             id: webview
@@ -111,39 +108,39 @@ id: root
             anchors {
                 fill: parent
                 bottom: parent.bottom
-            } 
+            }
             width: parent.width
             height: parent.height
             context: webcontext
             url: myUrl
 
-        
+
 
             preferences.allowFileAccessFromFileUrls: true
             preferences.allowUniversalAccessFromFileUrls: true
             preferences.appCacheEnabled: true
             preferences.javascriptCanAccessClipboard: true
 
-            
+
 
 
            contextualActions: ActionList {
-            
+
     /// strange...
             Action {
                         text: i18n.tr(webview.contextualData.href.toString())
         enabled: contextualData.herf.toString()
               }
-              
+
      /// didn't seem to work without a item that is always triggered...
         Action {
             text: i18n.tr("Copy Link")
                    enabled: webview.contextualData.href.toString()
-                   
+
                    //contextualData.href.toString()
             onTriggered: Clipboard.push([webview.contextualData.href])
               }
-              
+
                             Action {
                                         text: i18n.tr("Share Link")
                   enabled: webview.contextualData.href.toString()
@@ -159,7 +156,7 @@ id: root
                       }
                   }
                   }
-                  
+
                Action {
             text: i18n.tr("Copy Image")
                   enabled: webview.contextualData.img.toString()
@@ -169,10 +166,10 @@ id: root
                           text: i18n.tr("Download Image")
                   enabled: webview.contextualData.img.toString() && downloadLoader.status == Loader.Ready
                   onTriggered: downloadLoader.item.downloadPicture(webview.contextualData.img)
-              } 
-              
+              }
+
            }
-           
+
 
             function navigationRequestedDelegate(request) {
                 var url = request.url.toString();
@@ -214,14 +211,14 @@ id: root
                 source: "ContentPickerDialog.qml"
                 asynchronous: true
             }
-            
+
             filePicker: filePickerLoader.view
-            
-           //Sad page 
+
+           //Sad page
         Loader {
                 anchors {
                     fill: webview
-                    
+
                 }
                 active: webview &&
                         (webProcessMonitor.crashed || (webProcessMonitor.killed && !webview.loading))
@@ -229,7 +226,7 @@ id: root
                     webview: webview
                     objectName: "webviewSadPage"
                 }
-               
+
                 WebProcessMonitor {
                     id: webProcessMonitor
                     webview: webview
@@ -252,10 +249,10 @@ id: root
             asynchronous: true
         }
 
-            
+
     UnityWebApps.UnityWebApps {
         id: unityWebapps
-        name: webappName
+        name: root.applicationName
         bindee: containerWebView.currentWebview
         actionsContext: actionManager.globalContext
         model: UnityWebApps.UnityWebappsAppModel { searchPath: webappModelSearchPath }
@@ -271,10 +268,10 @@ id: root
             }
         }
     }
-    
-      
-        
-            function isValid (url){ 
+
+
+
+            function isValid (url){
                 var pattern = myPattern.split(',');
                 for (var i=0; i<pattern.length; i++) {
                     var tmpsearch = pattern[i].replace(/\*/g,'(.*)')
@@ -282,12 +279,12 @@ id: root
                     if (url.match(search)) {
                        return true;
                     }
-                } 
-                return false; 
+                }
+                return false;
             }
-            
+
             //blobsaver stuff
-            
+
                messageHandlers: [
         BlobSaverScriptMessageHandler {
             cb: function(path) {
@@ -295,13 +292,13 @@ id: root
             }
         }
     ]
-    
-                
+
+
         }
-        
-           
- 
-            
+
+
+
+
  Component {
         id: openDialogComponent
 
@@ -342,7 +339,7 @@ id: root
                     }
                     text: qsTr("Reload")
                 },
-                
+
                 RadialAction {
                     id: forward
                     enabled: webview.canGoForward
@@ -352,7 +349,7 @@ id: root
                     }
                    text: qsTr("Forward")
                  },
-               
+
                 RadialAction {
                     id: home
                     iconName: "home"
@@ -361,7 +358,7 @@ id: root
                     }
                     text: qsTr("Home")
                 },
-               
+
                   RadialAction {
                     id: back
                     enabled: webview.canGoBack
@@ -371,7 +368,7 @@ id: root
                     }
                     text: qsTr("Back")
                 }
-                
+
             ]
         }
     }
@@ -382,7 +379,7 @@ id: root
         Connections {
         target: webview
         onFullscreenRequested: webview.fullscreen = fullscreen
-       
+
         onFullscreenChanged: {
                 nav.visible = !webview.fullscreen
                 if (webview.fullscreen == true) {

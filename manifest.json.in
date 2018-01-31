@@ -1,0 +1,16 @@
+{
+    "name": "ncubports.milkor",
+    "description": "Nextcloud Webapp",
+    "architecture": "@CLICK_ARCH@",
+    "title": "Nextcloud Webapp",
+    "hooks": {
+        "ncubports": {
+            "apparmor": "ncubports.apparmor",
+            "desktop":  "ncubports.desktop",
+            "content-hub": "ncubports.content-hub"
+        }
+    },
+    "version": "1.0.1",
+    "maintainer": "Milan Korecky <milan.korecky@gmail.com>",
+    "framework" : "ubuntu-sdk-15.04.6"
+}
