@@ -11,25 +11,22 @@ import QtFeedback 5.0
 import Ubuntu.Unity.Action 1.1 as UnityActions
 import Ubuntu.UnityWebApps 0.1 as UnityWebApps
 import BlobSaver 1.0
+import DownloadInterceptor 1.0
 import "."
-import "../config.js" as Conf
-
 
 MainView {
-id: root
+    id: root
     objectName: "mainView"
 
     applicationName: "nextcloud.mateosalta"
 
     anchorToKeyboard: true
     automaticOrientation: true
-    
- 
 
     property string myUrl: SettingsDialog.address
     property string myPattern: ""
 
-    property string myUA: Conf.webappUA ? Conf.webappUA : "Mozilla/5.0 (Linux; Android 5.0; Nexus 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36"
+    property string myUA: "Mozilla/5.0 (Linux; Android 5.0; Nexus 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36"
 
     Page {
         id: page
@@ -54,7 +51,7 @@ id: root
             fadeTime: 50
             fadeIntensity: 0.0
         }
-        
+
           Component {
         id: mediaAccessDialogComponent
         MediaAccessDialog {
@@ -90,13 +87,13 @@ id: root
         WebContext {
             id: webcontext
             userAgent: myUA
-            
-            
+
+
             //TODO: blobsaver
            userScripts: [
         BlobSaverUserScript {}
     ]
-    
+
         }
         WebView {
             id: webview
@@ -113,39 +110,39 @@ id: root
             anchors {
                 fill: parent
                 bottom: parent.bottom
-            } 
+            }
             width: parent.width
             height: parent.height
             context: webcontext
             url: myUrl
 
-        
+
 
             preferences.allowFileAccessFromFileUrls: true
             preferences.allowUniversalAccessFromFileUrls: true
             preferences.appCacheEnabled: true
             preferences.javascriptCanAccessClipboard: true
 
-            
+
 
 
            contextualActions: ActionList {
-            
+
     /// strange...
             Action {
                         text: i18n.tr(webview.contextualData.href.toString())
         enabled: contextualData.herf.toString()
               }
-              
+
      /// didn't seem to work without a item that is always triggered...
         Action {
             text: i18n.tr("Copy Link")
                    enabled: webview.contextualData.href.toString()
-                   
+
                    //contextualData.href.toString()
             onTriggered: Clipboard.push([webview.contextualData.href])
               }
-              
+
                             Action {
                                         text: i18n.tr("Share Link")
                   enabled: webview.contextualData.href.toString()
@@ -161,7 +158,7 @@ id: root
                       }
                   }
                   }
-                  
+
                Action {
             text: i18n.tr("Copy Image")
                   enabled: webview.contextualData.img.toString()
@@ -171,21 +168,20 @@ id: root
                           text: i18n.tr("Download Image")
                   enabled: webview.contextualData.img.toString() && downloadLoader.status == Loader.Ready
                   onTriggered: downloadLoader.item.downloadPicture(webview.contextualData.img)
-              } 
-              
+              }
+
            }
-           
+
+            onDownloadRequested: {
+                console.log('download requested', request.url.toString(), request.suggestedFilename);
+                DownloadInterceptor.download(request.url, request.cookies, request.suggestedFilename, myUA);
+
+                request.action = Oxide.NavigationRequest.ActionReject;
+            }
+
 
             function navigationRequestedDelegate(request) {
                 var url = request.url.toString();
-
-                if (Conf.hapticLinks) {
-                    vibration.start()
-                }
-
-                if (Conf.audibleLinks) {
-                    clicksound.play()
-                }
 
                 if(isValid(url) == false) {
                     console.warn("Opening remote: " + url);
@@ -216,14 +212,14 @@ id: root
                 source: "ContentPickerDialog.qml"
                 asynchronous: true
             }
-            
+
             filePicker: filePickerLoader.view
-            
-           //Sad page 
+
+           //Sad page
         Loader {
                 anchors {
                     fill: webview
-                    
+
                 }
                 active: webview &&
                         (webProcessMonitor.crashed || (webProcessMonitor.killed && !webview.loading))
@@ -231,7 +227,7 @@ id: root
                     webview: webview
                     objectName: "webviewSadPage"
                 }
-               
+
                 WebProcessMonitor {
                     id: webProcessMonitor
                     webview: webview
@@ -254,10 +250,10 @@ id: root
             asynchronous: true
         }
 
-            
+
     UnityWebApps.UnityWebApps {
         id: unityWebapps
-        name: webappName
+        name: root.applicationName
         bindee: containerWebView.currentWebview
         actionsContext: actionManager.globalContext
         model: UnityWebApps.UnityWebappsAppModel { searchPath: webappModelSearchPath }
@@ -273,10 +269,10 @@ id: root
             }
         }
     }
-    
-      
-        
-            function isValid (url){ 
+
+
+
+            function isValid (url){
                 var pattern = myPattern.split(',');
                 for (var i=0; i<pattern.length; i++) {
                     var tmpsearch = pattern[i].replace(/\*/g,'(.*)')
@@ -284,41 +280,19 @@ id: root
                     if (url.match(search)) {
                        return true;
                     }
-                } 
-                return false; 
+                }
+                return false;
             }
-            
+
             //blobsaver stuff
-            
-               messageHandlers: [
-        BlobSaverScriptMessageHandler {
-            cb: function(path) {
-              PopupUtils.open(openDialogComponent, root, {'path': path});
-            }
+            messageHandlers: [
+                BlobSaverScriptMessageHandler {
+                    cb: function(path) {
+                        PopupUtils.open(openDialogComponent, root, {'path': path});
+                    }
+                }
+            ]
         }
-    ]
-    
-                
-        }
-        
-           
- 
-            
- Component {
-        id: openDialogComponent
-
-        OpenDialog {
-            anchors.fill: parent
-        }
-    }
-
-    Component {
-        id: pickerComponent
-
-        PickerDialog {}
-}
-
-
 
         NewProgressBar {
             webview: webview
@@ -332,7 +306,7 @@ id: root
         }
 
 
-         RadialBottomEdge {
+        RadialBottomEdge {
             id: nav
             visible: true
             actions: [
@@ -344,7 +318,7 @@ id: root
                     }
                     text: qsTr("Reload")
                 },
-                
+
                 RadialAction {
                     id: forward
                     enabled: webview.canGoForward
@@ -354,25 +328,16 @@ id: root
                     }
                    text: qsTr("Forward")
                  },
-                  RadialAction {
-                     id: settings
-                     iconName: "settings"
-                     onTriggered: {
-                         PopupUtils.open(Qt.resolvedUrl("SettingsDialog.qml")
-                         )
-                     }
-                     text: qsTr("Settings")
-                  },
-               
+
                 RadialAction {
                     id: home
                     iconName: "home"
                     onTriggered: {
-                        webview.url = myUrl
+                        webview.url = myUrl;
                     }
                     text: qsTr("Home")
                 },
-               
+
                   RadialAction {
                     id: back
                     enabled: webview.canGoBack
@@ -382,18 +347,49 @@ id: root
                     }
                     text: qsTr("Back")
                 }
-                
+
             ]
         }
     }
+
+    Component {
+        id: openDialogComponent
+
+        OpenDialog {
+            anchors.fill: parent
+        }
+    }
+
+    Component {
+        id: pickerComponent
+
+        PickerDialog {}
+    }
+
+    Component {
+        id: downloadFailedComponent
+
+        Dialog {
+            id: downloadFailedDialog
+
+            title: i18n.tr('Failed to download file')
+
+            Button {
+                text: i18n.tr('OK')
+                onClicked: PopupUtils.close(downloadFailedDialog)
+            }
+        }
+    }
+
     Connections {
         target: Qt.inputMethod
         onVisibleChanged: nav.visible = !nav.visible
     }
-        Connections {
+
+    Connections {
         target: webview
         onFullscreenRequested: webview.fullscreen = fullscreen
-       
+
         onFullscreenChanged: {
                 nav.visible = !webview.fullscreen
                 if (webview.fullscreen == true) {
@@ -403,6 +399,7 @@ id: root
                 }
             }
     }
+
     Connections {
         target: UriHandler
         onOpened: {
@@ -411,6 +408,17 @@ id: root
             }
             webview.url = uris[0]
             console.warn("uri-handler request")
+        }
+    }
+
+    Connections {
+        target: DownloadInterceptor
+        onSuccess: {
+            PopupUtils.open(openDialogComponent, root, {'path': path});
+        }
+
+        onFail: {
+            PopupUtils.open(downloadFailedComponent, root, {'text': message});
         }
     }
 }

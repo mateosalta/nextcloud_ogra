@@ -1,0 +1,6 @@
+[submodule "plugins/BlobSaver"]
+	path = plugins/BlobSaver
+	url = https://github.com/bhdouglass/blobsaver.git
+[submodule "plugins/DownloadInterceptor"]
+	path = plugins/DownloadInterceptor
+	url = https://github.com/bhdouglass/downloadinterceptor.git
