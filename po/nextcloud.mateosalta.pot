@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: ncubports.milkor\n"
+"Project-Id-Version: nextcloud.mateosalta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-01 20:20+0000\n"
+"POT-Creation-Date: 2018-02-01 20:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,8 +22,8 @@ msgid "JavaScript Prompt"
 msgstr ""
 
 #: ../qml/PromptDialog.qml:32 ../qml/ConfirmDialog.qml:26
-#: ../qml/AuthenticationDialog.qml:47 ../qml/Main.qml:377
-#: ../qml/AlertDialog.qml:26
+#: ../qml/AuthenticationDialog.qml:47 ../qml/Main.qml:378
+#: ../qml/SettingsDialog.qml:39 ../qml/AlertDialog.qml:26
 msgid "OK"
 msgstr ""
 
@@ -287,24 +287,32 @@ msgid ""
 "which failed our security checks for an unknown reason."
 msgstr ""
 
-#: ../qml/Main.qml:138
+#: ../qml/Main.qml:139
 msgid "Copy Link"
 msgstr ""
 
-#: ../qml/Main.qml:146
+#: ../qml/Main.qml:147
 msgid "Share Link"
 msgstr ""
 
-#: ../qml/Main.qml:162
+#: ../qml/Main.qml:163
 msgid "Copy Image"
 msgstr ""
 
-#: ../qml/Main.qml:167
+#: ../qml/Main.qml:168
 msgid "Download Image"
 msgstr ""
 
-#: ../qml/Main.qml:374
+#: ../qml/Main.qml:375
 msgid "Failed to download file"
+msgstr ""
+
+#: ../qml/SettingsDialog.qml:25
+msgid "Settings"
+msgstr ""
+
+#: ../qml/SettingsDialog.qml:33
+msgid "www.nextcloud.com"
 msgstr ""
 
 #: ../qml/QrCodeDialog.qml:11
@@ -324,6 +332,6 @@ msgstr ""
 msgid "The website %1:%2 requires authentication."
 msgstr ""
 
-#: ncubports.desktop.in.h:1
-msgid "Nextcloud Webapp"
+#: nextcloud.desktop.in.h:1
+msgid "Nextcloud"
 msgstr ""
