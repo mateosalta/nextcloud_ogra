@@ -18,13 +18,13 @@ MainView {
     id: root
     objectName: "mainView"
 
-    applicationName: "ncubports.milkor"
+    applicationName: "nextcloud.mateosalta"
 
     anchorToKeyboard: true
     automaticOrientation: true
 
-    property string myUrl: 'https://nc.ubports.com'
-    property string myPattern: 'https?://nc.ubports.com/*'
+    property string myUrl: SettingsDialog.address
+    property string myPattern: ""
 
     property string myUA: "Mozilla/5.0 (Linux; Android 5.0; Nexus 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36"
 
@@ -104,6 +104,7 @@ MainView {
   confirmDialog: ConfirmDialog {}
     promptDialog: PromptDialog {}
    beforeUnloadDialog: BeforeUnloadDialog {}
+     // settingsDialog: SettingsDialog {}
 
 
             anchors {

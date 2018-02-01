@@ -1,8 +1,8 @@
 // the name of your app as used in the click package (required)
-var webappName = "ncubports.milkor"
+var webappName = "nextcloud.mateosalta"
 
 // the start url of your app (required)
-var webappUrl = "https://rkupper.no-ip.org/"
+//var webappUrl = ""
 
 // the the pattern that defines which links are considered
 // local and which are opened in an external browser (required)

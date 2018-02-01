@@ -1,0 +1,10 @@
+[
+        {
+                "protocol": "http",
+                "domain-suffix": "nc"
+        },
+        {
+                "protocol": "https",
+                "domain-suffix": "nc"
+        }
+]
