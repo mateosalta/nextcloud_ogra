@@ -11,6 +11,7 @@ import QtFeedback 5.0
 import Ubuntu.Unity.Action 1.1 as UnityActions
 import Ubuntu.UnityWebApps 0.1 as UnityWebApps
 import BlobSaver 1.0
+import DownloadInterceptor 1.0
 import "."
 
 MainView {
@@ -61,7 +62,7 @@ MainView {
     PopupWindowController {
         id: popupController
         objectName: "popupController"
-        webappUrlPatterns: Conf.webappUrlPattern
+        webappUrlPatterns: myPattern
         mainWebappView: webview
         blockOpenExternalUrls: webview.blockOpenExternalUrls
         mediaAccessDialogComponent: mediaAccessDialogComponent
@@ -170,17 +171,16 @@ MainView {
 
            }
 
+            onDownloadRequested: {
+                console.log('download requested', request.url.toString(), request.suggestedFilename);
+                DownloadInterceptor.download(request.url, request.cookies, request.suggestedFilename, myUA);
+
+                request.action = Oxide.NavigationRequest.ActionReject;
+            }
+
 
             function navigationRequestedDelegate(request) {
                 var url = request.url.toString();
-
-                if (Conf.hapticLinks) {
-                    vibration.start()
-                }
-
-                if (Conf.audibleLinks) {
-                    clicksound.play()
-                }
 
                 if(isValid(url) == false) {
                     console.warn("Opening remote: " + url);
@@ -284,36 +284,14 @@ MainView {
             }
 
             //blobsaver stuff
-
-               messageHandlers: [
-        BlobSaverScriptMessageHandler {
-            cb: function(path) {
-              PopupUtils.open(openDialogComponent, root, {'path': path});
-            }
+            messageHandlers: [
+                BlobSaverScriptMessageHandler {
+                    cb: function(path) {
+                        PopupUtils.open(openDialogComponent, root, {'path': path});
+                    }
+                }
+            ]
         }
-    ]
-
-
-        }
-
-
-
-
- Component {
-        id: openDialogComponent
-
-        OpenDialog {
-            anchors.fill: parent
-        }
-    }
-
-    Component {
-        id: pickerComponent
-
-        PickerDialog {}
-}
-
-
 
         NewProgressBar {
             webview: webview
@@ -327,7 +305,7 @@ MainView {
         }
 
 
-         RadialBottomEdge {
+        RadialBottomEdge {
             id: nav
             visible: true
             actions: [
@@ -372,11 +350,42 @@ MainView {
             ]
         }
     }
+
+    Component {
+        id: openDialogComponent
+
+        OpenDialog {
+            anchors.fill: parent
+        }
+    }
+
+    Component {
+        id: pickerComponent
+
+        PickerDialog {}
+    }
+
+    Component {
+        id: downloadFailedComponent
+
+        Dialog {
+            id: downloadFailedDialog
+
+            title: i18n.tr('Failed to download file')
+
+            Button {
+                text: i18n.tr('OK')
+                onClicked: PopupUtils.close(downloadFailedDialog)
+            }
+        }
+    }
+
     Connections {
         target: Qt.inputMethod
         onVisibleChanged: nav.visible = !nav.visible
     }
-        Connections {
+
+    Connections {
         target: webview
         onFullscreenRequested: webview.fullscreen = fullscreen
 
@@ -389,6 +398,7 @@ MainView {
                 }
             }
     }
+
     Connections {
         target: UriHandler
         onOpened: {
@@ -397,6 +407,17 @@ MainView {
             }
             webview.url = uris[0]
             console.warn("uri-handler request")
+        }
+    }
+
+    Connections {
+        target: DownloadInterceptor
+        onSuccess: {
+            PopupUtils.open(openDialogComponent, root, {'path': path});
+        }
+
+        onFail: {
+            PopupUtils.open(downloadFailedComponent, root, {'text': message});
         }
     }
 }

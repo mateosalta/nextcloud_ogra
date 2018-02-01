@@ -19,7 +19,7 @@ PopupBase {
         ContentPeerPicker {
             visible: openDialog.visible
             handler: ContentHandler.Destination
-            contentType: ContentType.Pictures
+            contentType: ContentType.All
 
             onPeerSelected: {
                 activeTransfer = peer.request();

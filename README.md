@@ -1,3 +1,9 @@
 # Nextcloud Webapp
 
-Nextcloud Webapp
+Nextcloud Webapp for Ubuntu Touch
+
+## Development
+
+Initialize submodules: `git submodule update --init --recursive`
+
+Build and run using [clickable](https://github.com/bhdouglass/clickable).

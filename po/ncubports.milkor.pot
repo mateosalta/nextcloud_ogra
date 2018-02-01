@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ncubports.milkor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-31 05:51+0000\n"
+"POT-Creation-Date: 2018-02-01 20:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,8 @@ msgid "JavaScript Prompt"
 msgstr ""
 
 #: ../qml/PromptDialog.qml:32 ../qml/ConfirmDialog.qml:26
-#: ../qml/AuthenticationDialog.qml:47 ../qml/AlertDialog.qml:26
+#: ../qml/AuthenticationDialog.qml:47 ../qml/Main.qml:377
+#: ../qml/AlertDialog.qml:26
 msgid "OK"
 msgstr ""
 
@@ -286,20 +287,24 @@ msgid ""
 "which failed our security checks for an unknown reason."
 msgstr ""
 
-#: ../qml/Main.qml:137
+#: ../qml/Main.qml:138
 msgid "Copy Link"
 msgstr ""
 
-#: ../qml/Main.qml:145
+#: ../qml/Main.qml:146
 msgid "Share Link"
 msgstr ""
 
-#: ../qml/Main.qml:161
+#: ../qml/Main.qml:162
 msgid "Copy Image"
 msgstr ""
 
-#: ../qml/Main.qml:166
+#: ../qml/Main.qml:167
 msgid "Download Image"
+msgstr ""
+
+#: ../qml/Main.qml:374
+msgid "Failed to download file"
 msgstr ""
 
 #: ../qml/QrCodeDialog.qml:11
