@@ -333,7 +333,7 @@ MainView {
                     id: home
                     iconName: "home"
                     onTriggered: {
-                        webview.url = 'https://nc.ubports.com'
+                        webview.url = myUrl;
                     }
                     text: qsTr("Home")
                 },
