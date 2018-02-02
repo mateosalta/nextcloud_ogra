@@ -1,0 +1,17 @@
+{
+    "name": "nextcloud.mateosalta",
+    "description": "Nextcloud",
+    "architecture": "armhf",
+    "title": "Nextcloud",
+    "hooks": {
+        "nextcloud": {
+            "apparmor": "nextcloud.apparmor",
+            "desktop":  "nextcloud.desktop",
+            "content-hub": "nextcloud.content-hub",
+            "urls": "nextcloud.url-dispatcher"
+        }
+    },
+    "version": "1.0.1",
+    "maintainer": "Mateo Salta <mateo_salta@yahoo.com>",
+    "framework" : "ubuntu-sdk-15.04.6"
+}

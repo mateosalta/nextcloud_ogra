@@ -23,7 +23,7 @@ MainView {
     anchorToKeyboard: true
     automaticOrientation: true
 
-    property string myUrl: SettingsDialog.address
+    property string myUrl: address.text
     property string myPattern: ""
 
     property string myUA: "Mozilla/5.0 (Linux; Android 5.0; Nexus 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36"
@@ -39,9 +39,41 @@ MainView {
             fill: parent
             bottom: parent.bottom
         }
+        
         width: parent.width
         height: parent.height
 
+ModalDialog {
+    id: settings
+    title: i18n.tr("Settings")
+ TextField {
+                        id: address
+                        width: parent.width
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                        }
+                        inputMethodHints: Qt.ImhUrlCharactersOnly
+                        text:  "https://www.nextcloud.com"
+onAccepted:             address.focus = false
+
+
+                    }
+
+    Button {
+        text: i18n.tr("OK")
+
+         onClicked: {
+             settings.visible = false
+
+            address.focus = false
+             webview.reload()
+             address.focus = false
+             saved(address.text)
+
+}
+    }
+}
         HapticsEffect {
             id: vibration
             attackIntensity: 0.0
@@ -328,6 +360,15 @@ MainView {
                     }
                    text: qsTr("Forward")
                  },
+                  RadialAction {
+                     id: settingsnav
+                     iconName: "settings"
+                     onTriggered: {
+                         settings.visible = true
+                         
+                     }
+                     text: qsTr("Settings")
+                  },
 
                 RadialAction {
                     id: home
@@ -337,6 +378,7 @@ MainView {
                     }
                     text: qsTr("Home")
                 },
+                
 
                   RadialAction {
                     id: back
@@ -351,6 +393,7 @@ MainView {
             ]
         }
     }
+    
 
     Component {
         id: openDialogComponent

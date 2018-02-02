@@ -33,7 +33,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         fontSize: "large"
         font.bold: true
-        color: "#FFFFFF"
+
     }
 
     Label {
