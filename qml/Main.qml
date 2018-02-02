@@ -26,12 +26,13 @@ MainView {
 
     property string myUrl: address.text
     property string myPattern: ""
-
-    property string myUA: "Mozilla/5.0 (Linux; Android 5.0; Nexus 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36"
-
     Settings {
         property alias myUrl: address.text
     }
+
+    property string myUA: "Mozilla/5.0 (Linux; Android 5.0; Nexus 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36"
+
+
 
     Page {
         id: page
@@ -48,37 +49,7 @@ MainView {
         width: parent.width
         height: parent.height
 
-ModalDialog {
-    id: settings
-    title: i18n.tr("Settings")
- TextField {
-                        id: address
-                        width: parent.width
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                        }
-                        inputMethodHints: Qt.ImhUrlCharactersOnly
-                        text:  "https://www.nextcloud.com"
-onAccepted:             address.focus = false
 
-
-                    }
-
-    Button {
-        text: i18n.tr("OK")
-
-         onClicked: {
-             settings.visible = false
-
-            address.focus = false
-             webview.reload()
-             address.focus = false
-             saved(address.text)
-
-}
-    }
-}
         HapticsEffect {
             id: vibration
             attackIntensity: 0.0
@@ -252,6 +223,43 @@ onAccepted:             address.focus = false
 
             filePicker: filePickerLoader.view
 
+
+            ModalDialog {
+            id: dialogue
+    anchors.bottom: parent.bottom
+           // title: "Save file"
+           // text: "Are you sure that you want to save this file?"
+            TextField {
+                                   id: address
+                                   width: parent.width
+                                   anchors {
+                                       left: parent.left
+                                       right: parent.right
+                                   }
+                                   inputMethodHints: Qt.ImhUrlCharactersOnly
+                                   text:  "https://www.nextcloud.com"
+                                   onAccepted: {
+                                       address.focus = false
+
+                                   }
+
+
+                               }
+            Button {
+            text: "OK"
+            color: UbuntuColors.green
+            onClicked: {
+
+                address.focus = false
+                dialogue.visible = false
+
+                webview.reload()
+                saved(address.text)
+            }
+
+
+            }
+            }
            //Sad page
         Loader {
                 anchors {
@@ -343,6 +351,7 @@ onAccepted:             address.focus = false
         }
 
 
+
         RadialBottomEdge {
             id: nav
             visible: true
@@ -369,9 +378,7 @@ onAccepted:             address.focus = false
                      id: settingsnav
                      iconName: "settings"
                      onTriggered: {
-                         settings.visible = true
-                         
-                     }
+dialogue.visible = true                     }
                      text: qsTr("Settings")
                   },
 
