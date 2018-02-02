@@ -12,6 +12,7 @@ import Ubuntu.Unity.Action 1.1 as UnityActions
 import Ubuntu.UnityWebApps 0.1 as UnityWebApps
 import BlobSaver 1.0
 import DownloadInterceptor 1.0
+import Qt.labs.settings 1.0
 import "."
 
 MainView {
@@ -27,6 +28,10 @@ MainView {
     property string myPattern: ""
 
     property string myUA: "Mozilla/5.0 (Linux; Android 5.0; Nexus 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36"
+
+    Settings {
+        property alias myUrl: address.text
+    }
 
     Page {
         id: page
