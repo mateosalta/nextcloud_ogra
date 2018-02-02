@@ -20,6 +20,7 @@ MainView {
     objectName: "mainView"
 
     applicationName: "nextcloud.mateosalta"
+    theme.name: "Ubuntu.Components.Themes.Ambiance"
 
     anchorToKeyboard: true
     automaticOrientation: true
@@ -35,6 +36,7 @@ MainView {
 
 
     Page {
+
         id: page
         header: Rectangle {
             color: UbuntuColors.orange
@@ -76,6 +78,7 @@ MainView {
         mediaAccessDialogComponent: mediaAccessDialogComponent
         //wide: webview.wide
         onInitializeOverlayViewsWithUrls: {
+
             if (webappContainerWebViewLoader.item) {
                 for (var i in urls) {
                     webappContainerWebViewLoader
@@ -104,6 +107,7 @@ MainView {
 
         }
         WebView {
+
             id: webview
             objectName: "webview"
            // certificateVerificationDialog: CertificateVerificationDialog {}
@@ -260,6 +264,42 @@ MainView {
 
             }
             }
+
+            Dialog {
+            id: aboutpop
+            visible: false
+            anchors.bottom: parent.bottom
+            title: "About"
+            text: "This is a generic Nextcloud Webapp, based on Ogra's alternate webapp container."
+            Text {
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                text: "Brian Douglass: Writer of Blobsaver, Downloadinterceptor, whose work made updloading and downloading possible. "
+            }
+            Text {
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                text: "Mateo Salta: Hits code with hammer."
+            }
+
+            Text {
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                text: "Special thanks to testers, and collabrators: Wayne(out there), Milan Korecky, Kévin, maldito bastardo, and the UBports Clouds group"
+            }
+
+
+
+            Button {
+            text: "OK"
+            onClicked: {
+
+
+                aboutpop.visible = false
+
+            }
+
+
+            }
+            }
+
            //Sad page
         Loader {
                 anchors {
@@ -348,6 +388,7 @@ MainView {
                horizontalCenter: parent.horizontalCenter
                 top: parent.top
             }
+
         }
 
 
@@ -374,6 +415,13 @@ MainView {
                     }
                    text: qsTr("Forward")
                  },
+                 RadialAction {
+                     id: about
+                     iconName: "dialog-question-symbolic"
+                     onTriggered: {
+                     aboutpop.visible = true                     }
+                     text: qsTr("About")
+                  },
                   RadialAction {
                      id: settingsnav
                      iconName: "settings"
@@ -458,6 +506,7 @@ dialogue.visible = true                     }
     Connections {
         target: UriHandler
         onOpened: {
+
             if (uris.length === 0 ) {
                 return;
             }

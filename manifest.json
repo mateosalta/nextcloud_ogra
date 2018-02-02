@@ -11,7 +11,7 @@
             "urls": "nextcloud.url-dispatcher"
         }
     },
-    "version": "1.2.1",
+    "version": "1.3",
     "maintainer": "Mateo Salta <mateo_salta@yahoo.com>",
     "framework" : "ubuntu-sdk-15.04.6"
 }
