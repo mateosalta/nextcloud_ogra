@@ -232,7 +232,7 @@ MainView {
             id: dialogue
     anchors.bottom: parent.bottom
            // title: "Save file"
-           // text: "Are you sure that you want to save this file?"
+            text: "Provide address for your personal Nextcloud, include http:// https://"
             TextField {
                                    id: address
                                    width: parent.width
@@ -241,7 +241,7 @@ MainView {
                                        right: parent.right
                                    }
                                    inputMethodHints: Qt.ImhUrlCharactersOnly
-                                   text:  "https://rkupper.no-ip.org"
+                                   text:  "https://www.nextcloud.com"
                                    onAccepted: {
                                        address.focus = false
 
