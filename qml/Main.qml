@@ -221,7 +221,7 @@ MainView {
                 asynchronous: true
             }
 
-            filePicker: filePickerLoader.view
+            filePicker: pickerComponent
 
 
             ModalDialog {
@@ -237,7 +237,7 @@ MainView {
                                        right: parent.right
                                    }
                                    inputMethodHints: Qt.ImhUrlCharactersOnly
-                                   text:  "https://www.nextcloud.com"
+                                   text:  "https://rkupper.no-ip.org"
                                    onAccepted: {
                                        address.focus = false
 
