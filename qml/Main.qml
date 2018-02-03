@@ -25,8 +25,8 @@ MainView {
     anchorToKeyboard: true
     automaticOrientation: true
 
-    property string myUrl: address.text
-    property string aurl: myUrl
+    property string myUrl:  address.text
+   // property string aurl: myUrl
     property string myPattern: ""
     Settings {
         property alias myUrl: address.text
@@ -127,7 +127,7 @@ MainView {
             width: parent.width
             height: parent.height
             context: webcontext
-            url: aurl
+            url: !dialogue.visible ? saved(address.text) : "http://www.nextcloud.com"
 
 
 
@@ -241,14 +241,14 @@ MainView {
                                        left: parent.left
                                        right: parent.right
                                    }
-                                   inputMethodHints: Qt.ImhUrlCharactersOnly
-                                   text:  "https://www.nextcloud.com"
+                                   inputMethodHints: {Qt.ImhUrlCharactersOnly
+                                   Qt.ImhNoPredictiveText}
+                                   //text:  "https://www.nextcloud.com"
 
                                    onAccepted: {
                                        address.focus = false
-
+webview.url = myUrl;
                                        saved(address.text)
-                                        webview.reload()
 
                                    }
 
@@ -261,7 +261,6 @@ MainView {
             onClicked: {
 
                 address.focus = false
-                 webview.reload()
                 dialogue.visible = false
 
                 saved(address.text)
@@ -288,7 +287,7 @@ MainView {
 
             Text {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: "Special thanks to testers, and collabrators: Wayne(out there), Milan Korecky, Kévin, maldito bastardo, and the UBports Clouds group"
+                text: "Special thanks to testers, and collabrators: Wayne(out there), Milan Korecky, Kévin, maldito bastardo, Rüdiger Kupper, and the UBports Clouds group"
             }
 
 
@@ -331,7 +330,7 @@ MainView {
 
             }
             sourceComponent: ErrorSheet {
-                visible: webview && webview.lastLoadFailed
+                visible: webview && webview.lastLoadFailed && !dialogue.visible
                 url: webview ? webview.url : ""
                 onRefreshClicked: {
                     if (webview)
