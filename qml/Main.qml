@@ -26,6 +26,7 @@ MainView {
     automaticOrientation: true
 
     property string myUrl: address.text
+    property string aurl: myUrl
     property string myPattern: ""
     Settings {
         property alias myUrl: address.text
@@ -126,7 +127,7 @@ MainView {
             width: parent.width
             height: parent.height
             context: webcontext
-            url: myUrl
+            url: aurl
 
 
 
@@ -242,8 +243,12 @@ MainView {
                                    }
                                    inputMethodHints: Qt.ImhUrlCharactersOnly
                                    text:  "https://www.nextcloud.com"
+
                                    onAccepted: {
                                        address.focus = false
+
+                                       saved(address.text)
+                                        webview.reload()
 
                                    }
 
@@ -252,12 +257,13 @@ MainView {
             Button {
             text: "OK"
             color: UbuntuColors.green
+            enabled: !address.activeFocus
             onClicked: {
 
                 address.focus = false
+                 webview.reload()
                 dialogue.visible = false
 
-                webview.reload()
                 saved(address.text)
             }
 
