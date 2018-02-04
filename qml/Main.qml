@@ -25,15 +25,30 @@ MainView {
     anchorToKeyboard: true
     automaticOrientation: true
 
-    property string myUrl:  address.text
-   // property string aurl: myUrl
     property string myPattern: ""
     Settings {
-        property alias myUrl: address.text
+        id: settings
+        property string myUrl
     }
 
     property string myUA: "Mozilla/5.0 (Linux; Android 5.0; Nexus 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36"
 
+    Timer {
+        id: checkUrlTimer
+        interval: 500
+        running: false
+        repeat: false
+        onTriggered: {
+            if (!settings.myUrl) {
+                PopupUtils.open(settingsComponent, root, {url: settings.myUrl});
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        //Only start this after everything is safe, it's a bit hacky but it works
+        checkUrlTimer.start();
+    }
 
 
     Page {
@@ -48,7 +63,7 @@ MainView {
             fill: parent
             bottom: parent.bottom
         }
-        
+
         width: parent.width
         height: parent.height
 
@@ -127,9 +142,7 @@ MainView {
             width: parent.width
             height: parent.height
             context: webcontext
-            url: !dialogue.visible ? saved(address.text) : "http://www.nextcloud.com"
-
-
+            url: settings.myUrl
 
             preferences.allowFileAccessFromFileUrls: true
             preferences.allowUniversalAccessFromFileUrls: true
@@ -228,83 +241,6 @@ MainView {
 
             filePicker: pickerComponent
 
-
-            ModalDialog {
-            id: dialogue
-    anchors.bottom: parent.bottom
-           // title: "Save file"
-            text: "Provide address for your personal Nextcloud, include http:// https://"
-            TextField {
-                                   id: address
-                                   width: parent.width
-                                   anchors {
-                                       left: parent.left
-                                       right: parent.right
-                                   }
-                                   inputMethodHints: {Qt.ImhUrlCharactersOnly
-                                   Qt.ImhNoPredictiveText}
-                                   //text:  "https://www.nextcloud.com"
-
-                                   onAccepted: {
-                                       address.focus = false
-webview.url = myUrl;
-                                       saved(address.text)
-
-                                   }
-
-
-                               }
-            Button {
-            text: "OK"
-            color: UbuntuColors.green
-            enabled: !address.activeFocus
-            onClicked: {
-
-                address.focus = false
-                dialogue.visible = false
-
-                saved(address.text)
-            }
-
-
-            }
-            }
-
-            Dialog {
-            id: aboutpop
-            visible: false
-            anchors.bottom: parent.bottom
-            title: "About"
-            text: "This is a generic Nextcloud Webapp, based on Ogra's alternate webapp container."
-            Text {
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: "Brian Douglass: Writer of Blobsaver, Downloadinterceptor, whose work made updloading and downloading possible. "
-            }
-            Text {
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: "Mateo Salta: Hits code with hammer."
-            }
-
-            Text {
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: "Special thanks to testers, and collabrators: Wayne(out there), Milan Korecky, Kévin, maldito bastardo, Rüdiger Kupper, and the UBports Clouds group"
-            }
-
-
-
-            Button {
-            text: "OK"
-            onClicked: {
-
-
-                aboutpop.visible = false
-
-            }
-
-
-            }
-            }
-
            //Sad page
         Loader {
                 anchors {
@@ -330,7 +266,7 @@ webview.url = myUrl;
 
             }
             sourceComponent: ErrorSheet {
-                visible: webview && webview.lastLoadFailed && !dialogue.visible
+                visible: webview && webview.lastLoadFailed
                 url: webview ? webview.url : ""
                 onRefreshClicked: {
                     if (webview)
@@ -423,15 +359,15 @@ webview.url = myUrl;
                  RadialAction {
                      id: about
                      iconName: "dialog-question-symbolic"
-                     onTriggered: {
-                     aboutpop.visible = true                     }
+                     onTriggered: PopupUtils.open(aboutComponent, root);
                      text: qsTr("About")
                   },
                   RadialAction {
                      id: settingsnav
                      iconName: "settings"
                      onTriggered: {
-dialogue.visible = true                     }
+                         PopupUtils.open(settingsComponent, root, {url: settings.myUrl});
+                    }
                      text: qsTr("Settings")
                   },
 
@@ -439,11 +375,11 @@ dialogue.visible = true                     }
                     id: home
                     iconName: "home"
                     onTriggered: {
-                        webview.url = myUrl;
+                        webview.url = settings.myUrl;
                     }
                     text: qsTr("Home")
                 },
-                
+
 
                   RadialAction {
                     id: back
@@ -458,7 +394,7 @@ dialogue.visible = true                     }
             ]
         }
     }
-    
+
 
     Component {
         id: openDialogComponent
@@ -485,6 +421,80 @@ dialogue.visible = true                     }
             Button {
                 text: i18n.tr('OK')
                 onClicked: PopupUtils.close(downloadFailedDialog)
+            }
+        }
+    }
+
+    Component {
+        id: aboutComponent
+
+        Dialog {
+            id: aboutDialog
+            visible: false
+            title: i18n.tr("About")
+            text: i18n.tr("This is a generic Nextcloud Webapp, based on Ogra's alternate webapp container.")
+
+            Text {
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                text: i18n.tr('Brian Douglass: Writer of Blobsaver, Downloadinterceptor, whose work made updloading and downloading possible.')
+            }
+
+            Text {
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                text: i18n.tr('Mateo Salta: Hits code with hammer.')
+            }
+
+            Text {
+                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+                text: i18n.tr('Special thanks to testers, and collabrators: Wayne(out there), Milan Korecky, Kévin, maldito bastardo, Rüdiger Kupper, and the UBports Clouds group')
+            }
+
+            Button {
+                text: i18n.tr('OK')
+                onClicked: PopupUtils.close(aboutDialog)
+            }
+        }
+    }
+
+    Component {
+        id: settingsComponent
+
+        Dialog {
+            id: settingsDialog
+            text: i18n.tr('Provide url for your personal Nextcloud')
+
+            property alias url: address.text
+            onVisibleChanged: {
+                if (visible) {
+                    address.forceActiveFocus();
+                }
+            }
+
+            function saveUrl() {
+                var url = address.text;
+                if (url && url.substring(0, 7) != 'http://' && url.substring(0, 8) != 'https://') {
+                    url = 'http://' + url;
+                }
+
+                address.focus = false
+                settings.myUrl = url;
+                webview.url = settings.myUrl;
+                PopupUtils.close(settingsDialog);
+            }
+
+            TextField {
+                id: address
+                width: parent.width
+                inputMethodHints: Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
+
+                onAccepted: settingsDialog.saveUrl()
+            }
+
+            Button {
+                text: i18n.tr('OK')
+                color: UbuntuColors.green
+
+                onClicked: settingsDialog.saveUrl()
             }
         }
     }
