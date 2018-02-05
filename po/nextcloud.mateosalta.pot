@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nextcloud.mateosalta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-01 20:38+0000\n"
+"POT-Creation-Date: 2018-02-04 05:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,8 +22,8 @@ msgid "JavaScript Prompt"
 msgstr ""
 
 #: ../qml/PromptDialog.qml:32 ../qml/ConfirmDialog.qml:26
-#: ../qml/AuthenticationDialog.qml:47 ../qml/Main.qml:378
-#: ../qml/SettingsDialog.qml:39 ../qml/AlertDialog.qml:26
+#: ../qml/AuthenticationDialog.qml:47 ../qml/Main.qml:422 ../qml/Main.qml:453
+#: ../qml/Main.qml:494 ../qml/SettingsDialog.qml:39 ../qml/AlertDialog.qml:26
 msgid "OK"
 msgstr ""
 
@@ -287,24 +287,55 @@ msgid ""
 "which failed our security checks for an unknown reason."
 msgstr ""
 
-#: ../qml/Main.qml:139
+#: ../qml/Main.qml:165
 msgid "Copy Link"
 msgstr ""
 
-#: ../qml/Main.qml:147
+#: ../qml/Main.qml:173
 msgid "Share Link"
 msgstr ""
 
-#: ../qml/Main.qml:163
+#: ../qml/Main.qml:189
 msgid "Copy Image"
 msgstr ""
 
-#: ../qml/Main.qml:168
+#: ../qml/Main.qml:194
 msgid "Download Image"
 msgstr ""
 
-#: ../qml/Main.qml:375
+#: ../qml/Main.qml:419
 msgid "Failed to download file"
+msgstr ""
+
+#: ../qml/Main.qml:434
+msgid "About"
+msgstr ""
+
+#: ../qml/Main.qml:435
+msgid ""
+"This is a generic Nextcloud Webapp, based on Ogra's alternate webapp "
+"container."
+msgstr ""
+
+#: ../qml/Main.qml:439
+msgid ""
+"Brian Douglass: Writer of Blobsaver, Downloadinterceptor, whose work made "
+"updloading and downloading possible."
+msgstr ""
+
+#: ../qml/Main.qml:444
+msgid "Mateo Salta: Hits code with hammer."
+msgstr ""
+
+#: ../qml/Main.qml:449
+msgid ""
+"Special thanks to testers, and collabrators: Wayne(out there), Milan "
+"Korecky, Kévin, maldito bastardo, Rüdiger Kupper, and the UBports Clouds "
+"group"
+msgstr ""
+
+#: ../qml/Main.qml:464
+msgid "Provide url for your personal Nextcloud"
 msgstr ""
 
 #: ../qml/SettingsDialog.qml:25
