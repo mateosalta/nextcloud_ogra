@@ -227,7 +227,7 @@ MainView {
                 }
                 console.warn("url is: " + url)
             }
-            onGeolocationPermissionRequested: { request.accept() }
+            onGeolocationPermissionRequested: { request.allow() }
 
             Loader {
                 id: downloadLoader
@@ -282,19 +282,13 @@ MainView {
     UnityWebApps.UnityWebApps {
         id: unityWebapps
         name: root.applicationName
-        bindee: containerWebView.currentWebview
-        actionsContext: actionManager.globalContext
-        model: UnityWebApps.UnityWebappsAppModel { searchPath: webappModelSearchPath }
-        injectExtraUbuntuApis: runningLocalApplication
-        injectExtraContentShareCapabilities: !runningLocalApplication
+
+        injectExtraUbuntuApis: webview
 
         Component.onCompleted: {
          preferences.localStorageEnabled = true;
             // Delay bind the property to add a bit of backward compatibility with
-            // other unity-webapps-qml modules
-            if (unityWebapps.embeddedUiComponentParent !== undefined) {
-                unityWebapps.embeddedUiComponentParent = webapp
-            }
+
         }
     }
 
