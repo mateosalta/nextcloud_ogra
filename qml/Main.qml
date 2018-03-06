@@ -204,7 +204,9 @@ MainView {
 
                 request.action = Oxide.NavigationRequest.ActionReject;
             }
-
+  onCertificateError: {
+        error.allow()
+       }
 
             function navigationRequestedDelegate(request) {
                 var url = request.url.toString();
