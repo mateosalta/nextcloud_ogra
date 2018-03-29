@@ -1,10 +1,10 @@
 [Desktop Entry]
 Name=diaspora*
 Exec=qmlscene qml/Main.qml
-Icon=assets/logo.png
+Icon=splash.svg
 Terminal=false
 Type=Application
 X-Ubuntu-Touch=true
 
-X-Ubuntu-Splash-Color=#21272A
-X-Ubuntu-Splash-Image=assets/splash.png
+X-Ubuntu-Splash-Color=#040404
+X-Ubuntu-Splash-Image=splash.svg
