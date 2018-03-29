@@ -1,6 +1,6 @@
-# Nextcloud Webapp
+# diaspora* Webapp
 
-Nextcloud Webapp for Ubuntu Touch
+diaspora* Webapp for Ubuntu Touch
 
 ## Development
 
