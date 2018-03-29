@@ -1,8 +1,8 @@
 {
-    "name": "nextcloud.mateosalta",
-    "description": "Nextcloud webapp",
+    "name": "diaspora.amolith",
+    "description": "diaspora* WebApp",
     "architecture": "armhf",
-    "title": "Nextcloud",
+    "title": "diaspora*",
     "hooks": {
         "nextcloud": {
             "apparmor": "nextcloud.apparmor",
@@ -12,6 +12,6 @@
         }
     },
     "version": "1.9",
-    "maintainer": "Mateo Salta <mateo_salta@yahoo.com>",
+    "maintainer": "Amolith <amolithseregion@protonmail.com>",
     "framework" : "ubuntu-sdk-15.04.6"
 }

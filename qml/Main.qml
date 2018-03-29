@@ -19,7 +19,7 @@ MainView {
     id: root
     objectName: "mainView"
 
-    applicationName: "nextcloud.mateosalta"
+    applicationName: "diaspora.amolith"
     theme.name: "Ubuntu.Components.Themes.Ambiance"
 
     anchorToKeyboard: true
@@ -428,7 +428,7 @@ MainView {
             id: aboutDialog
             visible: false
             title: i18n.tr("About")
-            text: i18n.tr("This is a generic Nextcloud Webapp, based on Ogra's alternate webapp container.")
+            text: i18n.tr("This is a generic diaspora* Webapp, based on Ogra's alternate webapp container.")
 
             Text {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
@@ -457,7 +457,7 @@ MainView {
 
         Dialog {
             id: settingsDialog
-            text: i18n.tr('Provide url for your personal Nextcloud')
+            text: i18n.tr('Enter the URL for the diaspora* pod you wish to join or have already joined')
 
             property alias url: address.text
             onVisibleChanged: {
