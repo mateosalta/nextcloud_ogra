@@ -10,7 +10,7 @@ Item {
     property color hintColor: Theme.palette.normal.overlay
     property string hintIconName: "sort-listitem"
     property alias hintIconSource: hintIcon.source
-    property color hintIconColor: "#0082C9"
+    property color hintIconColor: "#040404"
     property bool bottomEdgeEnabled: true
 
 
