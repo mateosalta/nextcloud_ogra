@@ -7,7 +7,6 @@
         "nextcloud": {
             "apparmor": "nextcloud.apparmor",
             "desktop":  "nextcloud.desktop",
-            "content-hub": "nextcloud.content-hub",
             "urls": "nextcloud.url-dispatcher"
         }
     },
