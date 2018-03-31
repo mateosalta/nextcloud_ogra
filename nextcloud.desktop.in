@@ -1,5 +1,5 @@
 [Desktop Entry]
-_Name=Nextcloud
+_Name=diaspora*
 Exec=qmlscene qml/Main.qml
 Icon=splash.svg
 Terminal=false

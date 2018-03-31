@@ -19,8 +19,8 @@ execute_process(
 
 set(QT_IMPORTS_DIR "lib/${ARCH_TRIPLET}")
 
-set(PROJECT_NAME "nextcloud")
-set(FULL_PROJECT_NAME "nextcloud.mateosalta")
+set(PROJECT_NAME "diaspora")
+set(FULL_PROJECT_NAME "diaspora.amolith")
 set(CMAKE_INSTALL_PREFIX /)
 set(DATA_DIR /)
 set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
