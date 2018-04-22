@@ -1,12 +1,12 @@
 // the name of your app as used in the click package (required)
-var webappName = "nextcloud.mateosalta"
+var webappName = "diaspora.amolith"
 
 // the start url of your app (required)
 //var webappUrl = ""
 
 // the the pattern that defines which links are considered
 // local and which are opened in an external browser (required)
-var webappUrlPattern = "https?://rkupper.no-ip.org/*,https?://rkupper.no-ip.org/*, https?://nextcloud.com/*"
+var webappUrlPattern = "https?://rkupper.no-ip.org/*,https?://rkupper.no-ip.org/*, https?://dia.so/*"
 
 // a user agent override (optional)
 // var webappUA = "uncomment this line and set your User Agent string here between these quotes, if you need to override it"

@@ -6,7 +6,6 @@
         "video",
         "webview",
         "microphone",
-        "content_exchange_source"
-    ],
+    ]
     "policy_version": 1.3
 }

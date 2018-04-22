@@ -1,17 +1,16 @@
 {
-    "name": "nextcloud.mateosalta",
-    "description": "Nextcloud",
+    "name": "diaspora.amolith",
+    "description": "diaspora*",
     "architecture": "@CLICK_ARCH@",
-    "title": "Nextcloud",
+    "title": "diaspora*",
     "hooks": {
         "nextcloud": {
             "apparmor": "nextcloud.apparmor",
             "desktop":  "nextcloud.desktop",
-            "content-hub": "nextcloud.content-hub",
             "urls": "nextcloud.url-dispatcher"
         }
     },
     "version": "1.0.1",
-    "maintainer": "Mateo Salta <mateo_salta@yahoo.com>",
+    "maintainer": "Amolith Seregion <amolithseregion@protonmail.com>",
     "framework" : "ubuntu-sdk-15.04.6"
 }

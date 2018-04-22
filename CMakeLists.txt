@@ -19,8 +19,8 @@ execute_process(
 
 set(QT_IMPORTS_DIR "lib/${ARCH_TRIPLET}")
 
-set(PROJECT_NAME "nextcloud")
-set(FULL_PROJECT_NAME "nextcloud.mateosalta")
+set(PROJECT_NAME "diaspora")
+set(FULL_PROJECT_NAME "diaspora.amolith")
 set(CMAKE_INSTALL_PREFIX /)
 set(DATA_DIR /)
 set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
@@ -35,8 +35,8 @@ execute_process(
 configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json DESTINATION ${CMAKE_INSTALL_PREFIX})
 install(FILES ${PROJECT_NAME}.apparmor DESTINATION ${DATA_DIR})
-install(FILES ${PROJECT_NAME}.content-hub DESTINATION ${DATA_DIR})
-install(FILES splash.png DESTINATION ${DATA_DIR})
+#install(FILES ${PROJECT_NAME}.content-hub DESTINATION ${DATA_DIR})
+install(FILES splash.svg DESTINATION ${DATA_DIR})
 install(DIRECTORY qml DESTINATION ${DATA_DIR})
 install(DIRECTORY assets DESTINATION ${DATA_DIR})
 
