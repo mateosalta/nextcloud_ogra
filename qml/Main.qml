@@ -338,7 +338,7 @@ MainView {
                     onTriggered: {
                         webview.reload()
                     }
-                    text: qsTr("Reload")
+                    text: i18n.tr("Reload")
                 },
 
                 RadialAction {
@@ -348,13 +348,13 @@ MainView {
                     onTriggered: {
                         webview.goForward()
                     }
-                   text: qsTr("Forward")
+                   text: i18n.tr("Forward")
                  },
                  RadialAction {
                      id: about
                      iconName: "dialog-question-symbolic"
                      onTriggered: PopupUtils.open(aboutComponent, root);
-                     text: qsTr("About")
+                     text: i18n.tr("About")
                   },
                   RadialAction {
                      id: settingsnav
@@ -362,7 +362,7 @@ MainView {
                      onTriggered: {
                          PopupUtils.open(settingsComponent, root, {url: settings.myUrl});
                     }
-                     text: qsTr("Settings")
+                     text: i18n.tr("Settings")
                   },
 
                 RadialAction {
@@ -371,7 +371,7 @@ MainView {
                     onTriggered: {
                         webview.url = settings.myUrl;
                     }
-                    text: qsTr("Home")
+                    text: i18n.tr("Home")
                 },
 
 
@@ -382,7 +382,7 @@ MainView {
                     onTriggered: {
                         webview.goBack()
                     }
-                    text: qsTr("Back")
+                    text: i18n.tr("Back")
                 }
 
             ]
