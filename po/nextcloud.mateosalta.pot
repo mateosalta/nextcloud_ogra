@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nextcloud.mateosalta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-04 05:26+0000\n"
+"POT-Creation-Date: 2019-01-25 20:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,52 +17,177 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../qml/SadPage.qml:45
+msgid "Oops, something went wrong. Reload from bottom menu."
+msgstr ""
+
+#: ../qml/SettingsDialog.qml:25 ../qml/Main.qml:365
+msgid "Settings"
+msgstr ""
+
+#: ../qml/SettingsDialog.qml:33
+msgid "www.nextcloud.com"
+msgstr ""
+
+#: ../qml/SettingsDialog.qml:39 ../qml/AuthenticationDialog.qml:47
+#: ../qml/PromptDialog.qml:32 ../qml/Main.qml:416 ../qml/Main.qml:447
+#: ../qml/Main.qml:488 ../qml/AlertDialog.qml:26 ../qml/ConfirmDialog.qml:26
+msgid "OK"
+msgstr ""
+
+#: ../qml/AuthenticationDialog.qml:24
+msgid "Authentication required."
+msgstr ""
+
+#. TRANSLATORS: %1 refers to the URL of the current website
+#: ../qml/AuthenticationDialog.qml:26
+msgid "The website %1 requires authentication."
+msgstr ""
+
+#: ../qml/AuthenticationDialog.qml:34
+msgid "Username"
+msgstr ""
+
+#: ../qml/AuthenticationDialog.qml:41
+msgid "Password"
+msgstr ""
+
+#: ../qml/AuthenticationDialog.qml:53 ../qml/PromptDialog.qml:38
+#: ../qml/ConfirmDialog.qml:32
+msgid "Cancel"
+msgstr ""
+
+#: ../qml/QrCodeDialog.qml:11
+msgid "Close"
+msgstr ""
+
 #: ../qml/PromptDialog.qml:23
 msgid "JavaScript Prompt"
 msgstr ""
 
-#: ../qml/PromptDialog.qml:32 ../qml/ConfirmDialog.qml:26
-#: ../qml/AuthenticationDialog.qml:47 ../qml/Main.qml:422 ../qml/Main.qml:453
-#: ../qml/Main.qml:494 ../qml/SettingsDialog.qml:39 ../qml/AlertDialog.qml:26
-msgid "OK"
+#: ../qml/Main.qml:165
+msgid "Copy Link"
 msgstr ""
 
-#: ../qml/PromptDialog.qml:38 ../qml/ConfirmDialog.qml:32
-#: ../qml/AuthenticationDialog.qml:53
-msgid "Cancel"
+#: ../qml/Main.qml:173
+msgid "Share Link"
+msgstr ""
+
+#: ../qml/Main.qml:189
+msgid "Copy Image"
+msgstr ""
+
+#: ../qml/Main.qml:194
+msgid "Download Image"
+msgstr ""
+
+#: ../qml/Main.qml:341
+msgid "Reload"
+msgstr ""
+
+#: ../qml/Main.qml:351
+msgid "Forward"
+msgstr ""
+
+#: ../qml/Main.qml:357 ../qml/Main.qml:428
+msgid "About"
+msgstr ""
+
+#: ../qml/Main.qml:374
+msgid "Home"
+msgstr ""
+
+#: ../qml/Main.qml:385
+msgid "Back"
+msgstr ""
+
+#: ../qml/Main.qml:413
+msgid "Failed to download file"
+msgstr ""
+
+#: ../qml/Main.qml:429
+msgid ""
+"This is a generic Nextcloud Webapp, based on Ogra's alternate webapp "
+"container."
+msgstr ""
+
+#: ../qml/Main.qml:433
+msgid ""
+"Brian Douglass: Writer of Blobsaver, Downloadinterceptor, whose work made "
+"updloading and downloading possible."
+msgstr ""
+
+#: ../qml/Main.qml:438
+msgid "Mateo Salta: Hits code with hammer."
+msgstr ""
+
+#: ../qml/Main.qml:443
+msgid ""
+"Special thanks to testers, and collabrators: Wayne(out there), Milan "
+"Korecky, Kévin, maldito bastardo, Rüdiger Kupper, and the UBports Clouds "
+"group"
+msgstr ""
+
+#: ../qml/Main.qml:458
+msgid "Provide url for your personal Nextcloud"
+msgstr ""
+
+#: ../qml/ErrorSheet.qml:36
+msgid "Network Error"
+msgstr ""
+
+#. TRANSLATORS: %1 refers to the URL of the current page
+#: ../qml/ErrorSheet.qml:42
+msgid "It appears you are having trouble viewing: %1."
+msgstr ""
+
+#: ../qml/ErrorSheet.qml:48
+msgid "Please check your network settings and try refreshing the page."
+msgstr ""
+
+#: ../qml/ErrorSheet.qml:53
+msgid "Refresh page"
+msgstr ""
+
+#: ../qml/AlertDialog.qml:23
+msgid "JavaScript Alert"
+msgstr ""
+
+#: ../qml/actions/Copy.qml:22
+msgid "Copy"
+msgstr ""
+
+#: ../qml/actions/SaveImage.qml:22
+msgid "Save image"
+msgstr ""
+
+#: ../qml/actions/CopyImage.qml:22
+msgid "Copy image"
+msgstr ""
+
+#: ../qml/actions/ShareLink.qml:22
+msgid "Share…"
+msgstr ""
+
+#: ../qml/actions/CopyLink.qml:22
+msgid "Copy link"
 msgstr ""
 
 #: ../qml/FilePickerDialog.qml:28
 msgid "Please choose a file"
 msgstr ""
 
-#: ../qml/MediaAccessDialog.qml:31
-msgid "Permission"
+#: ../qml/ConfirmDialog.qml:23
+msgid "JavaScript Confirmation"
 msgstr ""
 
-#: ../qml/MediaAccessDialog.qml:38
-msgid "Allow this domain to access your camera and microphone?"
+#: ../qml/ProxyAuthenticationDialog.qml:22
+msgid "Proxy authentication required."
 msgstr ""
 
-#: ../qml/MediaAccessDialog.qml:39
-msgid "Allow this domain to access your camera?"
-msgstr ""
-
-#: ../qml/MediaAccessDialog.qml:40
-msgid "Allow this domain to access your microphone?"
-msgstr ""
-
-#. TRANSLATORS: %1 is the URL of the site requesting access to camera and/or microphone and %2 is the URL of the site that embeds it
-#: ../qml/MediaAccessDialog.qml:48
-msgid "%1 (embedded in %2)"
-msgstr ""
-
-#: ../qml/MediaAccessDialog.qml:72
-msgid "Yes"
-msgstr ""
-
-#: ../qml/MediaAccessDialog.qml:83
-msgid "No"
+#. TRANSLATORS: %1 refers to the proxy address, %2 refers to the proxy port
+#: ../qml/ProxyAuthenticationDialog.qml:24
+msgid "The website %1:%2 requires authentication."
 msgstr ""
 
 #: ../qml/CertificateVerificationDialog.qml:24
@@ -84,80 +209,6 @@ msgstr ""
 #: ../qml/CertificateVerificationDialog.qml:35
 #: ../qml/InvalidCertificateErrorSheet.qml:173
 msgid "Back to safety"
-msgstr ""
-
-#: ../qml/actions/CopyLink.qml:22
-msgid "Copy link"
-msgstr ""
-
-#: ../qml/actions/Copy.qml:22
-msgid "Copy"
-msgstr ""
-
-#: ../qml/actions/SaveImage.qml:22
-msgid "Save image"
-msgstr ""
-
-#: ../qml/actions/CopyImage.qml:22
-msgid "Copy image"
-msgstr ""
-
-#: ../qml/actions/ShareLink.qml:22
-msgid "Share…"
-msgstr ""
-
-#: ../qml/SadPage.qml:45
-msgid "Oops, something went wrong. Reload from bottom menu."
-msgstr ""
-
-#: ../qml/BeforeUnloadDialog.qml:23
-msgid "Confirm Navigation"
-msgstr ""
-
-#: ../qml/BeforeUnloadDialog.qml:26
-msgid "Leave"
-msgstr ""
-
-#: ../qml/BeforeUnloadDialog.qml:31
-msgid "Stay"
-msgstr ""
-
-#: ../qml/ConfirmDialog.qml:23
-msgid "JavaScript Confirmation"
-msgstr ""
-
-#: ../qml/ErrorSheet.qml:36
-msgid "Network Error"
-msgstr ""
-
-#. TRANSLATORS: %1 refers to the URL of the current page
-#: ../qml/ErrorSheet.qml:42
-msgid "It appears you are having trouble viewing: %1."
-msgstr ""
-
-#: ../qml/ErrorSheet.qml:48
-msgid "Please check your network settings and try refreshing the page."
-msgstr ""
-
-#: ../qml/ErrorSheet.qml:53
-msgid "Refresh page"
-msgstr ""
-
-#: ../qml/AuthenticationDialog.qml:24
-msgid "Authentication required."
-msgstr ""
-
-#. TRANSLATORS: %1 refers to the URL of the current website
-#: ../qml/AuthenticationDialog.qml:26
-msgid "The website %1 requires authentication."
-msgstr ""
-
-#: ../qml/AuthenticationDialog.qml:34
-msgid "Username"
-msgstr ""
-
-#: ../qml/AuthenticationDialog.qml:41
-msgid "Password"
 msgstr ""
 
 #: ../qml/InvalidCertificateErrorSheet.qml:55
@@ -287,80 +338,45 @@ msgid ""
 "which failed our security checks for an unknown reason."
 msgstr ""
 
-#: ../qml/Main.qml:165
-msgid "Copy Link"
+#: ../qml/MediaAccessDialog.qml:31
+msgid "Permission"
 msgstr ""
 
-#: ../qml/Main.qml:173
-msgid "Share Link"
+#: ../qml/MediaAccessDialog.qml:38
+msgid "Allow this domain to access your camera and microphone?"
 msgstr ""
 
-#: ../qml/Main.qml:189
-msgid "Copy Image"
+#: ../qml/MediaAccessDialog.qml:39
+msgid "Allow this domain to access your camera?"
 msgstr ""
 
-#: ../qml/Main.qml:194
-msgid "Download Image"
+#: ../qml/MediaAccessDialog.qml:40
+msgid "Allow this domain to access your microphone?"
 msgstr ""
 
-#: ../qml/Main.qml:419
-msgid "Failed to download file"
+#. TRANSLATORS: %1 is the URL of the site requesting access to camera and/or microphone and %2 is the URL of the site that embeds it
+#: ../qml/MediaAccessDialog.qml:48
+msgid "%1 (embedded in %2)"
 msgstr ""
 
-#: ../qml/Main.qml:434
-msgid "About"
+#: ../qml/MediaAccessDialog.qml:72
+msgid "Yes"
 msgstr ""
 
-#: ../qml/Main.qml:435
-msgid ""
-"This is a generic Nextcloud Webapp, based on Ogra's alternate webapp "
-"container."
+#: ../qml/MediaAccessDialog.qml:83
+msgid "No"
 msgstr ""
 
-#: ../qml/Main.qml:439
-msgid ""
-"Brian Douglass: Writer of Blobsaver, Downloadinterceptor, whose work made "
-"updloading and downloading possible."
+#: ../qml/BeforeUnloadDialog.qml:23
+msgid "Confirm Navigation"
 msgstr ""
 
-#: ../qml/Main.qml:444
-msgid "Mateo Salta: Hits code with hammer."
+#: ../qml/BeforeUnloadDialog.qml:26
+msgid "Leave"
 msgstr ""
 
-#: ../qml/Main.qml:449
-msgid ""
-"Special thanks to testers, and collabrators: Wayne(out there), Milan "
-"Korecky, Kévin, maldito bastardo, Rüdiger Kupper, and the UBports Clouds "
-"group"
-msgstr ""
-
-#: ../qml/Main.qml:464
-msgid "Provide url for your personal Nextcloud"
-msgstr ""
-
-#: ../qml/SettingsDialog.qml:25
-msgid "Settings"
-msgstr ""
-
-#: ../qml/SettingsDialog.qml:33
-msgid "www.nextcloud.com"
-msgstr ""
-
-#: ../qml/QrCodeDialog.qml:11
-msgid "Close"
-msgstr ""
-
-#: ../qml/AlertDialog.qml:23
-msgid "JavaScript Alert"
-msgstr ""
-
-#: ../qml/ProxyAuthenticationDialog.qml:22
-msgid "Proxy authentication required."
-msgstr ""
-
-#. TRANSLATORS: %1 refers to the proxy address, %2 refers to the proxy port
-#: ../qml/ProxyAuthenticationDialog.qml:24
-msgid "The website %1:%2 requires authentication."
+#: ../qml/BeforeUnloadDialog.qml:31
+msgid "Stay"
 msgstr ""
 
 #: nextcloud.desktop.in.h:1
