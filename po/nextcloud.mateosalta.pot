@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nextcloud.mateosalta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-25 20:28+0000\n"
+"POT-Creation-Date: 2019-01-25 20:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Oops, something went wrong. Reload from bottom menu."
 msgstr ""
 
-#: ../qml/SettingsDialog.qml:25 ../qml/Main.qml:365
+#: ../qml/SettingsDialog.qml:25 ../qml/Main.qml:366
 msgid "Settings"
 msgstr ""
 
@@ -65,27 +65,27 @@ msgstr ""
 msgid "JavaScript Prompt"
 msgstr ""
 
-#: ../qml/Main.qml:165
+#: ../qml/Main.qml:163
 msgid "Copy Link"
 msgstr ""
 
-#: ../qml/Main.qml:173
+#: ../qml/Main.qml:171
 msgid "Share Link"
 msgstr ""
 
-#: ../qml/Main.qml:189
+#: ../qml/Main.qml:187
 msgid "Copy Image"
 msgstr ""
 
-#: ../qml/Main.qml:194
+#: ../qml/Main.qml:193
 msgid "Download Image"
 msgstr ""
 
-#: ../qml/Main.qml:341
+#: ../qml/Main.qml:340
 msgid "Reload"
 msgstr ""
 
-#: ../qml/Main.qml:351
+#: ../qml/Main.qml:350
 msgid "Forward"
 msgstr ""
 
@@ -93,7 +93,7 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../qml/Main.qml:374
+#: ../qml/Main.qml:375
 msgid "Home"
 msgstr ""
 
