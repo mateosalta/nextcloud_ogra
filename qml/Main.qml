@@ -78,33 +78,33 @@ MainView {
             fadeIntensity: 0.0
         }
 
-          Component {
-        id: mediaAccessDialogComponent
-        MediaAccessDialog {
-            objectName: "mediaAccessDialog"
-        }
-    }
-
-    PopupWindowController {
-        id: popupController
-        objectName: "popupController"
-        webappUrlPatterns: myPattern
-        mainWebappView: webview
-        blockOpenExternalUrls: webview.blockOpenExternalUrls
-        mediaAccessDialogComponent: mediaAccessDialogComponent
-        //wide: webview.wide
-        onInitializeOverlayViewsWithUrls: {
-
-            if (webappContainerWebViewLoader.item) {
-                for (var i in urls) {
-                    webappContainerWebViewLoader
-                        .item
-                        .openOverlayForUrl(urls[i])
-                }
+        Component {
+            id: mediaAccessDialogComponent
+            MediaAccessDialog {
+                objectName: "mediaAccessDialog"
             }
         }
 
-    }
+        PopupWindowController {
+            id: popupController
+            objectName: "popupController"
+            webappUrlPatterns: myPattern
+            mainWebappView: webview
+            blockOpenExternalUrls: webview.blockOpenExternalUrls
+            mediaAccessDialogComponent: mediaAccessDialogComponent
+            //wide: webview.wide
+            onInitializeOverlayViewsWithUrls: {
+
+                if (webappContainerWebViewLoader.item) {
+                    for (var i in urls) {
+                        webappContainerWebViewLoader
+                            .item
+                            .openOverlayForUrl(urls[i])
+                    }
+                }
+            }
+
+        }
 
         SoundEffect {
             id: clicksound
@@ -117,22 +117,23 @@ MainView {
 
 
             //TODO: blobsaver
-           userScripts: [
-        BlobSaverUserScript {}
-    ]
+            userScripts: [
+                BlobSaverUserScript {}
+            ]
 
         }
+
         WebView {
 
             id: webview
             objectName: "webview"
-           // certificateVerificationDialog: CertificateVerificationDialog {}
-   // proxyAuthenticationDialog: ProxyAuthenticationDialog {}
-                 alertDialog: AlertDialog {}
-  confirmDialog: ConfirmDialog {}
-    promptDialog: PromptDialog {}
-   beforeUnloadDialog: BeforeUnloadDialog {}
-     // settingsDialog: SettingsDialog {}
+            // certificateVerificationDialog: CertificateVerificationDialog {}
+            // proxyAuthenticationDialog: ProxyAuthenticationDialog {}
+            alertDialog: AlertDialog {}
+            confirmDialog: ConfirmDialog {}
+            promptDialog: PromptDialog {}
+            beforeUnloadDialog: BeforeUnloadDialog {}
+            // settingsDialog: SettingsDialog {}
 
 
             anchors {
@@ -149,54 +150,52 @@ MainView {
             preferences.appCacheEnabled: true
             preferences.javascriptCanAccessClipboard: true
 
+            contextualActions: ActionList {
 
+                /// strange...
+                Action {
+                    text: i18n.tr(webview.contextualData.href.toString())
+                    enabled: contextualData.herf.toString()
+                }
 
+                /// didn't seem to work without a item that is always triggered...
+                Action {
+                    text: i18n.tr("Copy Link")
+                    enabled: webview.contextualData.href.toString()
 
-           contextualActions: ActionList {
+                    //contextualData.href.toString()
+                    onTriggered: Clipboard.push([webview.contextualData.href])
+                }
 
-    /// strange...
-            Action {
-                        text: i18n.tr(webview.contextualData.href.toString())
-        enabled: contextualData.herf.toString()
-              }
+                Action {
+                    text: i18n.tr("Share Link")
+                    enabled: webview.contextualData.href.toString()
+                    onTriggered: {
+                        var component = Qt.createComponent("Share.qml")
+                        console.log("component..."+component.status)
+                        if (component.status == Component.Ready) {
+                            var share = component.createObject(webview)
+                            share.onDone.connect(share.destroy)
+                            share.shareLink(webview.contextualData.href.toString(), webview.contextualData.title)
+                        } else {
+                            console.log(component.errorString())
+                        }
+                    }
+                }
 
-     /// didn't seem to work without a item that is always triggered...
-        Action {
-            text: i18n.tr("Copy Link")
-                   enabled: webview.contextualData.href.toString()
+                Action {
+                    text: i18n.tr("Copy Image")
+                    enabled: webview.contextualData.img.toString()
+                    onTriggered: Clipboard.push([webview.contextualData.img])
+                }
 
-                   //contextualData.href.toString()
-            onTriggered: Clipboard.push([webview.contextualData.href])
-              }
+                Action {
+                    text: i18n.tr("Download Image")
+                    enabled: webview.contextualData.img.toString() && downloadLoader.status == Loader.Ready
+                    onTriggered: downloadLoader.item.downloadPicture(webview.contextualData.img)
+                }
 
-                            Action {
-                                        text: i18n.tr("Share Link")
-                  enabled: webview.contextualData.href.toString()
-                  onTriggered: {
-                      var component = Qt.createComponent("Share.qml")
-                      console.log("component..."+component.status)
-                      if (component.status == Component.Ready) {
-                          var share = component.createObject(webview)
-                          share.onDone.connect(share.destroy)
-                          share.shareLink(webview.contextualData.href.toString(), webview.contextualData.title)
-                      } else {
-                          console.log(component.errorString())
-                      }
-                  }
-                  }
-
-               Action {
-            text: i18n.tr("Copy Image")
-                  enabled: webview.contextualData.img.toString()
-                  onTriggered: Clipboard.push([webview.contextualData.img])
-              }
-              Action {
-                          text: i18n.tr("Download Image")
-                  enabled: webview.contextualData.img.toString() && downloadLoader.status == Loader.Ready
-                  onTriggered: downloadLoader.item.downloadPicture(webview.contextualData.img)
-              }
-
-           }
+            }
 
             onDownloadRequested: {
                 console.log('download requested', request.url.toString(), request.suggestedFilename);
@@ -215,6 +214,7 @@ MainView {
                     request.action = Oxide.NavigationRequest.ActionReject
                 }
             }
+
             Component.onCompleted: {
                 preferences.localStorageEnabled = true
                 if (Qt.application.arguments[2] != undefined ) {
@@ -241,12 +241,13 @@ MainView {
 
             filePicker: pickerComponent
 
-           //Sad page
-        Loader {
+            //Sad page
+            Loader {
+
                 anchors {
                     fill: webview
-
                 }
+
                 active: webview &&
                         (webProcessMonitor.crashed || (webProcessMonitor.killed && !webview.loading))
                 sourceComponent: SadPage {
@@ -260,37 +261,36 @@ MainView {
                 }
                 asynchronous: true
             }
-                Loader {
-            anchors {
+
+            Loader {
+                anchors {
                 fill: webview
 
+                }
+                sourceComponent: ErrorSheet {
+                    visible: webview && webview.lastLoadFailed
+                    url: webview ? webview.url : ""
+                    onRefreshClicked: {
+                        if (webview)
+                            webview.reload()
+                    }
+                }
+                asynchronous: true
             }
-            sourceComponent: ErrorSheet {
-                visible: webview && webview.lastLoadFailed
-                url: webview ? webview.url : ""
-                onRefreshClicked: {
-                    if (webview)
-                        webview.reload()
+
+
+            UnityWebApps.UnityWebApps {
+                id: unityWebapps
+                name: root.applicationName
+
+                injectExtraUbuntuApis: webview
+
+                Component.onCompleted: {
+                 preferences.localStorageEnabled = true;
+                    // Delay bind the property to add a bit of backward compatibility with
+
                 }
             }
-            asynchronous: true
-        }
-
-
-    UnityWebApps.UnityWebApps {
-        id: unityWebapps
-        name: root.applicationName
-
-        injectExtraUbuntuApis: webview
-
-        Component.onCompleted: {
-         preferences.localStorageEnabled = true;
-            // Delay bind the property to add a bit of backward compatibility with
-
-        }
-    }
-
-
 
             function isValid (url){
                 var pattern = myPattern.split(',');
@@ -319,13 +319,12 @@ MainView {
             width: parent.width + units.gu(5)
             anchors {
                 //left: parent.left
-               // right: parent.right
-               horizontalCenter: parent.horizontalCenter
+                // right: parent.right
+                horizontalCenter: parent.horizontalCenter
                 top: parent.top
             }
 
         }
-
 
 
         RadialBottomEdge {
@@ -350,20 +349,22 @@ MainView {
                     }
                    text: i18n.tr("Forward")
                  },
-                 RadialAction {
-                     id: about
-                     iconName: "dialog-question-symbolic"
-                     onTriggered: PopupUtils.open(aboutComponent, root);
-                     text: i18n.tr("About")
-                  },
-                  RadialAction {
-                     id: settingsnav
-                     iconName: "settings"
-                     onTriggered: {
-                         PopupUtils.open(settingsComponent, root, {url: settings.myUrl});
+
+                RadialAction {
+                    id: about
+                    iconName: "dialog-question-symbolic"
+                    onTriggered: PopupUtils.open(aboutComponent, root);
+                    text: i18n.tr("About")
+                },
+
+                RadialAction {
+                    id: settingsnav
+                    iconName: "settings"
+                    onTriggered: {
+                        PopupUtils.open(settingsComponent, root, {url: settings.myUrl});
                     }
-                     text: i18n.tr("Settings")
-                  },
+                    text: i18n.tr("Settings")
+                },
 
                 RadialAction {
                     id: home
@@ -374,8 +375,7 @@ MainView {
                     text: i18n.tr("Home")
                 },
 
-
-                  RadialAction {
+                RadialAction {
                     id: back
                     enabled: navigationhistory.canGoBack
                     iconName: "go-previous"
@@ -503,13 +503,13 @@ MainView {
         onFullscreenRequested: webview.fullscreen = fullscreen
 
         onFullscreenChanged: {
-                nav.visible = !webview.fullscreen
-                if (webview.fullscreen == true) {
-                    window.visibility = 5
-                } else {
-                    window.visibility = 4
-                }
+            nav.visible = !webview.fullscreen
+            if (webview.fullscreen == true) {
+                window.visibility = 5
+            } else {
+                window.visibility = 4
             }
+        }
     }
 
     Connections {
