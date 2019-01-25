@@ -343,7 +343,7 @@ MainView {
 
                 RadialAction {
                     id: forward
-                    enabled: webview.canGoForward
+                    enabled: navigationhistory.canGoForward
                     iconName: "go-next"
                     onTriggered: {
                         webview.goForward()
@@ -377,7 +377,7 @@ MainView {
 
                   RadialAction {
                     id: back
-                    enabled: webview.canGoBack
+                    enabled: navigationhistory.canGoBack
                     iconName: "go-previous"
                     onTriggered: {
                         webview.goBack()
