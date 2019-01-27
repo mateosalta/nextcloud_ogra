@@ -345,7 +345,7 @@ MainView {
                     enabled: Oxide.NavigationHistory.canGoForward
                     iconName: "go-next"
                     onTriggered: {
-                        Oxide.NavigationHistory.goForward()
+                        webview.goForward()
                     }
                    text: i18n.tr("Forward")
                  },
@@ -380,7 +380,7 @@ MainView {
                     enabled: Oxide.NavigationHistory.canGoBack
                     iconName: "go-previous"
                     onTriggered: {
-                        Oxide.NavigationHistory.goBack()
+                        webview.goBack()
                     }
                     text: i18n.tr("Back")
                 }
