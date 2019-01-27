@@ -286,7 +286,7 @@ MainView {
                 injectExtraUbuntuApis: webview
 
                 Component.onCompleted: {
-                 preferences.localStorageEnabled = true;
+                    preferences.localStorageEnabled = true;
                     // Delay bind the property to add a bit of backward compatibility with
 
                 }
@@ -342,10 +342,10 @@ MainView {
 
                 RadialAction {
                     id: forward
-                    enabled: navigationhistory.canGoForward
+                    enabled: Oxide.NavigationHistory.canGoForward
                     iconName: "go-next"
                     onTriggered: {
-                        webview.goForward()
+                        Oxide.NavigationHistory.goForward()
                     }
                    text: i18n.tr("Forward")
                  },
@@ -377,10 +377,10 @@ MainView {
 
                 RadialAction {
                     id: back
-                    enabled: navigationhistory.canGoBack
+                    enabled: Oxide.NavigationHistory.canGoBack
                     iconName: "go-previous"
                     onTriggered: {
-                        webview.goBack()
+                        Oxide.NavigationHistory.goBack()
                     }
                     text: i18n.tr("Back")
                 }
